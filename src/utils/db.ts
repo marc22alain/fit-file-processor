@@ -1,9 +1,12 @@
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
+import path from 'path';
+
+const DB_FILENAME = path.join(__dirname, '../../database/database.sqlite');
 
 export async function saveFitData(keyData: any): Promise<void> {
     const db = await open({
-        filename: './database.sqlite',
+        filename: DB_FILENAME,
         driver: sqlite3.Database
     });
 
@@ -17,7 +20,7 @@ export async function saveFitData(keyData: any): Promise<void> {
 
 export async function executeQuery(query: string): Promise<any[]> {
     const db = await open({
-        filename: './database.sqlite',
+        filename: DB_FILENAME,
         driver: sqlite3.Database
     });
 

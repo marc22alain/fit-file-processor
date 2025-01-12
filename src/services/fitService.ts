@@ -2,7 +2,7 @@ import { parseFitFile } from '../utils/fitParser';
 
 export async function extractKeyData(buffer: Buffer): Promise<any> {
     const fitData = await parseFitFile(buffer);
-    const session = fitData.sessions[0];
+    const session = fitData.activity.sessions[0];
     const activity = fitData.activity;
 
     const keyData = {
