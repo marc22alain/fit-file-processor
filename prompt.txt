@@ -1,0 +1,14 @@
+Create the structure and components needed for a back-end application that:
+- Reads and parses FIT (Flexible and Interoperable Data Transfer) files
+- Extracts "key data" from the FIT files, which consists of:
+  - ['start_time', 'end_time', activity type, 'total_distance', 'avg_heart_rate', 'max_heart_rate', 'avg_power', 'max_power'] extracted from 'session' messages
+  - ['event', 'event_type'] extracted from 'activity' messages
+  - see reference https://github.com/jimmykane/fit-parser/blob/master/src/fit.js
+- Has a server that hosts on port 4700, and exposes two web endpoints
+  - "/upload" will accept a single file or multiple FIT files
+  - "/collection-query" will accept an SQL query string that queries records from the database
+Design an appropriate SQLite3 database schema for storing the extracted data ("key data") that:
+- Implements efficient data insertion into the SQLite3 database
+- Provides an API that can handle user-supplied queries; it will validate that the queries do not modify the database or records
+Create the structure and components of a front-end application that:
+- will present a web page where the user can drop FIT files, sending them to the "/upload" endpoint
