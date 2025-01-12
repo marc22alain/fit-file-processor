@@ -9,7 +9,7 @@ app.use(express.json());
 
 const fitController = new FitController();
 
-app.post('/upload', upload.array('fitFile'), fitController.uploadFitFile.bind(fitController));
+app.post('/upload', upload.array('fitFile'), fitController.importFitFile.bind(fitController));
 app.post('/collection-query', fitController.collectionQuery.bind(fitController));
 
 const PORT = 4700;

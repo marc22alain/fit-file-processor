@@ -1,4 +1,4 @@
-import { FitParser } from 'fit-file-parser';
+import FitParser from 'fit-file-parser';
 
 export function parseFitFile(buffer: Buffer): Promise<any> {
     const fitParser = new FitParser({

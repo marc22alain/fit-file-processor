@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { extractKeyData } from '../services/fitService';
-import { saveFitData } from '../utils/db';
+import { saveFitData, executeQuery } from '../utils/db';
 
 class FitController {
-    public async uploadFitFile(req: Request, res: Response): Promise<void> {
+    public async importFitFile(req: Request, res: Response): Promise<void> {
         try {
             const files = req.files as Express.Multer.File[];
             for (const file of files) {
@@ -12,7 +12,11 @@ class FitController {
             }
             res.status(200).send('Files uploaded and data saved successfully');
         } catch (error) {
-            res.status(500).send(error.message);
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred');
+            }
         }
     }
 
@@ -22,7 +26,11 @@ class FitController {
             const data = await executeQuery(query);
             res.status(200).json(data);
         } catch (error) {
-            res.status(500).send(error.message);
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred');
+            }
         }
     }
 }
