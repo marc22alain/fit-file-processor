@@ -1,0 +1,28 @@
+{
+  "name": "fit-file-processor",
+  "version": "1.0.0",
+  "description": "A Node.js application to import and process FIT files and save data to an SQLite database.",
+  "main": "src/app.ts",
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "fit-file-parser": "^1.0.0",
+    "multer": "^1.4.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.0.2",
+    "@types/multer": "^1.4.7",
+    "jest": "^27.0.6",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
