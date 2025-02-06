@@ -1,6 +1,6 @@
-import FitParser from 'fit-file-parser';
+import FitParser, { FitParserResult } from 'fit-file-parser';
 
-export function parseFitFile(buffer: Buffer): Promise<any> {
+export function parseFitFile(buffer: Buffer): Promise<FitParserResult> {
     const fitParser = new FitParser({
         force: true,
         speedUnit: 'km/h',
@@ -11,7 +11,7 @@ export function parseFitFile(buffer: Buffer): Promise<any> {
     });
 
     return new Promise((resolve, reject) => {
-        fitParser.parse(buffer, (error, data) => {
+        fitParser.parse(buffer, (error: Error | null, data: FitParserResult) => {
             if (error) {
                 reject(error);
             } else {

@@ -8,15 +8,13 @@ declare module 'fit-file-parser' {
         mode?: 'cascade' | 'list';
     }
 
-    interface FitParserResult {
+    export interface FitParserResult {
         // Define the structure of the parsed result here
         [key: string]: any;
     }
 
-    class FitParser {
+    export default class FitParser {
         constructor(options?: FitParserOptions);
         parse(buffer: Buffer, callback: (error: Error | null, data: FitParserResult) => void): void;
     }
-
-    export = FitParser;
 }
