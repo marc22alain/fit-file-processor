@@ -7,7 +7,7 @@ export async function extractKeyData(buffer: Buffer): Promise<any> {
 
     const keyData = {
         startTime: session.start_time,
-        endTime: session.end_time,
+        totalElapsedTime: session.total_elapsed_time,
         activityType: session.sport,
         totalDistance: session.total_distance,
         avgHeartRate: session.avg_heart_rate,

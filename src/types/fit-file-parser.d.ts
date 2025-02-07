@@ -11,7 +11,7 @@ declare module 'fit-file-parser' {
     export interface FitParserResult {
         sessions?: Array<{
             start_time?: Date;
-            end_time?: Date;
+            total_elapsed_time?: number;
             total_distance?: number;
             avg_heart_rate?: number;
             max_heart_rate?: number;

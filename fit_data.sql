@@ -1,7 +1,7 @@
 CREATE TABLE fit_data (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     start_time TEXT UNIQUE,
-    end_time TEXT,
+    total_elapsed_time REAL,
     activity_type TEXT,
     total_distance REAL,
     avg_heart_rate REAL,
