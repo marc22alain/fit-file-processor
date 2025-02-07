@@ -1,3 +1,16 @@
+// Add file selection handler
+document.getElementById('fitFile').addEventListener('change', (event) => {
+    const uploadButton = document.getElementById('uploadButton');
+    const fileCount = event.target.files.length;
+    
+    if (fileCount > 0) {
+        uploadButton.textContent = `Upload ${fileCount} file${fileCount === 1 ? '' : 's'}`;
+        uploadButton.style.display = 'block';
+    } else {
+        uploadButton.style.display = 'none';
+    }
+});
+
 document.getElementById('uploadForm').addEventListener('submit', async (event) => {
     event.preventDefault();
     
@@ -78,7 +91,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
         alert('Error uploading files: ' + error.message);
     } finally {
         // Reset form state
-        uploadButton.style.display = 'block';
+        uploadButton.style.display = 'none'; // Hide upload button since no files are selected
         spinner.style.display = 'none';
         loadingText.style.display = 'none';
         fileInput.disabled = false;
