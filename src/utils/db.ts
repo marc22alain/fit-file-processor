@@ -17,7 +17,7 @@ export async function saveFitData(keyData: any): Promise<void> {
         );
     } catch (error) {
         if ((error as any).code === 'SQLITE_CONSTRAINT' && (error as any).message.includes('UNIQUE constraint failed: fit_data.start_time')) {
-            console.error(`A record with the start_time ${keyData.startTime} already exists.`);
+            throw new Error(`A record with the start_time ${keyData.startTime} already exists.`);
         } else {
             throw error;
         }
