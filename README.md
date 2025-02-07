@@ -55,7 +55,7 @@ npm install
 3. Set up the SQLite3 database:
 
 ```bash
-sqlite3 database.sqlite < database/schema.sql
+sqlite3 database/database.sqlite < fit_data.sql
 ```
 
 ## Usage
@@ -99,6 +99,10 @@ npm run build
 ### Custom Type Definitions
 
 The `fit-file-parser` module does not have type definitions, so a custom declaration file is provided in `src/types/fit-file-parser.d.ts`.
+
+## References
+- `node_modules/fit-file-parser/dist/fit.js` for the FIT file data structures
+- [Fit File Viewer](https://www.fitfileviewer.com/) for FIT file format reference
 
 ## License
 
