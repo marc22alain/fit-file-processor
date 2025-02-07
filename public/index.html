@@ -5,6 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIT File Uploader</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .upload-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px; /* This creates ~2 inches of space between elements */
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .custom-file-input {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .custom-file-input:hover {
+            background-color: #45a049;
+        }
+
+        #uploadButton {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background-color: #2196F3;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #uploadButton:hover {
+            background-color: #1976D2;
+        }
+
+        /* Hide the default file input */
+        #fitFile {
+            display: none;
+        }
+
         .spinner {
             display: none;
             width: 40px;
@@ -32,8 +90,11 @@
 <body>
     <h1>Upload FIT Files</h1>
     <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" id="fitFile" name="fitFile" multiple>
-        <button type="submit" id="uploadButton">Upload</button>
+        <div class="upload-container">
+            <label for="fitFile" class="custom-file-input">Browse Files</label>
+            <input type="file" id="fitFile" name="fitFile" multiple>
+            <button type="submit" id="uploadButton">Upload</button>
+        </div>
         <div id="spinner" class="spinner"></div>
         <div id="loadingText" class="loading-text">Processing files...</div>
     </form>
