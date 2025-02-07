@@ -1,6 +1,18 @@
 document.getElementById('uploadForm').addEventListener('submit', async (event) => {
     event.preventDefault();
-    const files = document.getElementById('fitFile').files;
+    
+    const uploadButton = document.getElementById('uploadButton');
+    const spinner = document.getElementById('spinner');
+    const loadingText = document.getElementById('loadingText');
+    const fileInput = document.getElementById('fitFile');
+    
+    // Show loading state
+    uploadButton.style.display = 'none';
+    spinner.style.display = 'block';
+    loadingText.style.display = 'block';
+    fileInput.disabled = true;
+
+    const files = fileInput.files;
     const formData = new FormData();
     for (let i = 0; i < files.length; i++) {
         formData.append('fitFile', files[i]);
@@ -61,7 +73,15 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
         document.getElementById('closeModal').onclick = function() {
             document.body.removeChild(modal);
         };
+
     } catch (error) {
         alert('Error uploading files: ' + error.message);
+    } finally {
+        // Reset form state
+        uploadButton.style.display = 'block';
+        spinner.style.display = 'none';
+        loadingText.style.display = 'none';
+        fileInput.disabled = false;
+        fileInput.value = ''; // Clear the file input
     }
 });
