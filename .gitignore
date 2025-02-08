@@ -1,3 +1,7 @@
 /dist
-/database
 /node_modules
+/database/*.sqlite
+/database/*.sqlite-journal
+
+# Keep database schema files
+!/database/schema/

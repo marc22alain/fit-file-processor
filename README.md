@@ -55,7 +55,7 @@ npm install
 3. Set up the SQLite3 database:
 
 ```bash
-sqlite3 database/database.sqlite < fit_data.sql
+sqlite3 database/database.sqlite < database/schema/init.sql
 ```
 
 ## Usage

@@ -11,3 +11,6 @@ CREATE TABLE fit_data (
     event TEXT,
     event_type TEXT
 );
+
+-- Add index on start_time for better query performance
+CREATE INDEX idx_start_time ON fit_data(start_time);
