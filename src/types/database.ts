@@ -1,5 +1,5 @@
 export interface FitDataRecord {
-    start_time: string;
+    start_time: Date;
     total_elapsed_time: number;
     activity_type: string;
     total_distance: number;

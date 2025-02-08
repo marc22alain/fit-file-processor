@@ -1,6 +1,6 @@
 CREATE TABLE fit_data (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    start_time TEXT UNIQUE,
+    start_time DATETIME UNIQUE,
     total_elapsed_time REAL,
     activity_type TEXT,
     total_distance REAL,

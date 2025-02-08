@@ -13,7 +13,11 @@ export async function saveFitData(keyData: FitDataRecord): Promise<void> {
 
     const fields = Object.keys(keyData);
     const placeholders = fields.map(() => '?').join(', ');
-    const values = fields.map(field => keyData[field as keyof FitDataRecord]);
+    const values = fields.map(field => {
+        const value = keyData[field as keyof FitDataRecord];
+        // Convert Date to ISO string for SQLite storage
+        return value instanceof Date ? value.toISOString() : value;
+    });
     
     const query = `INSERT INTO fit_data (${fields.join(', ')}) VALUES (${placeholders})`;
 
@@ -21,7 +25,7 @@ export async function saveFitData(keyData: FitDataRecord): Promise<void> {
         await db.run(query, values);
     } catch (error) {
         if ((error as any).code === 'SQLITE_CONSTRAINT' && (error as any).message.includes('UNIQUE constraint failed: fit_data.start_time')) {
-            throw new Error(`A record with the start_time ${keyData.start_time} already exists.`);
+            throw new Error(`A record with the start_time ${keyData.start_time.toISOString()} already exists.`);
         } else {
             throw error;
         }
@@ -30,7 +34,7 @@ export async function saveFitData(keyData: FitDataRecord): Promise<void> {
     }
 }
 
-export async function executeQuery(query: string): Promise<any[]> {
+export async function executeQuery(query: string): Promise<FitDataRecord[]> {
     const db = await open({
         filename: DB_FILENAME,
         driver: sqlite3.Database
@@ -41,7 +45,12 @@ export async function executeQuery(query: string): Promise<any[]> {
     }
 
     const data = await db.all(query);
-
-    await db.close();
-    return data;
+    
+    // Convert ISO string dates back to Date objects
+    return data.map(row => {
+        if (row.start_time) {
+            row.start_time = new Date(row.start_time);
+        }
+        return row;
+    });
 }
